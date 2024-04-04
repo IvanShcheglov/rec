@@ -1,31 +1,30 @@
 ﻿Console.Clear();
-int Prompt(string message)
+Console.Write("M: ");
+int m = Convert.ToInt32(Console.ReadLine());
+
+Console.Write("N: ");
+int n = Convert.ToInt32(Console.ReadLine());
+
+AkkermanFunction(m,n);
+
+
+void AkkermanFunction(int m, int n)
 {
-  Console.Write(message);
-  int result = Convert.ToInt32(Console.ReadLine());
-  return result;
+    Console.Write(Akkerman(m, n)); 
 }
 
-int NaturalNumber(int n, int m)
+int Akkerman(int m, int n)
 {
-  if (n == m) return n;
-  else Console.Write($"{NaturalNumber(n, m - 1)}, ");
-  return m;
+    if (m == 0)
+    {
+        return n + 1;
+    }
+    else if (n == 0 && m > 0)
+    {
+        return Akkerman(m - 1, 1);
+    }
+    else
+    {
+        return (Akkerman(m - 1, Akkerman(m, n - 1)));
+    }
 }
-
-int n = Prompt("N: ");
-if (n < 1)
-{
-  Console.WriteLine("Введите положительное число");
-  return;
-}
-
-int m = Prompt("M: ");
-if (m < 1)
-{
-  Console.WriteLine("Введите положительное число");
-  return;
-}
-if (n>m)
-Console.WriteLine("Введите N>M");
-else Console.WriteLine(NaturalNumber(n, m));
